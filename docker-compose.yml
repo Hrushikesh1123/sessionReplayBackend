@@ -8,7 +8,9 @@ services:
       - "8080:8080"
     env_file:
       - .env
-    extra_hosts:
-      - "host.docker.internal:host-gateway"  # This allows connecting to host machine
+    platform: linux/amd64  # Specifically for M1/M2 Macs if needed
     environment:
       - DB_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # This allows connecting to host machine
+    
