@@ -8,6 +8,7 @@ import (
 
 	"sessionReplay/config"
 	"sessionReplay/db"
+	"sessionReplay/kafka"
 	"sessionReplay/routers"
 )
 
@@ -23,6 +24,8 @@ func main() {
 		log.Fatalf("Error loading config: %v", err)
 	}
 
+	//making simple kafka set up for producer and consumer
+
 	// Initialize database
 	database, err := db.NewDatabase(cfg)
 	if err != nil {
@@ -32,9 +35,13 @@ func main() {
 
 	// Start your app logic here
 	log.Println("Database connection established successfully!")
-	app.Listen(":8080")
 	// app.Get("/api", func(c *fiber.Ctx) error {
 	// 	return c.SendString("Hello World")
 	// })
+
+	//making simple kafka set up for producer and consumer
+	kafka.ProduceMessage("localhost:9092", "test-topic")
+	kafka.ConsumeMessages("localhost:9092", "test-topic", "test-group")
+	app.Listen(":8080")
 
 }
