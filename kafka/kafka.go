@@ -19,7 +19,6 @@ func ProduceMessage(broker, topic string) {
 
 	defer writer.Close()
 
-	// Example: Sending 5 messages
 	for i := 1; i <= 5; i++ {
 		msg := kafka.Message{
 			Key:   []byte(fmt.Sprintf("key-%d", i)),

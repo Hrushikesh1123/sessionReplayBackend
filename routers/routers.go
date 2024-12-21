@@ -9,4 +9,6 @@ import (
 func SetupRoutes(app *fiber.App) {
 	// API routes
 	app.Get("/health", handlers.HealthCheck)
+	app.Get("/health", handlers.HealthCheck)
+
 }
